@@ -40,4 +40,14 @@
     0x6B1CA8 | class mmVehList * VehicleListPtr | ?VehicleListPtr@@3PAVmmVehList@@A
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "vehinfo.h"
+
+class mmVehList
+{
+public:
+    mmVehInfo* GetVehicleInfo(char*);
+};
+
+inline extern_var(0x6B1CA8, mmVehList, VehicleList);

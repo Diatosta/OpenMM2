@@ -56,4 +56,14 @@
     0x5B4200 | const NetArena::`vftable' | ??_7NetArena@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+class NetArena
+{
+public:
+    char data1[0x78];
+    int dword78;
+
+    void SetHost(int);
+    void SetMyStatus(int);
+};

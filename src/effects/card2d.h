@@ -35,4 +35,23 @@
     0x5B8600 | const Card2D::`vftable' | ??_7Card2D@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "node/node.h"
+#include "vector/vector2.h"
+
+struct Card2D
+{
+public:
+    asNode asNode;
+    Vector2 Pos;
+    Vector2 Size;
+    uint8_t R;
+    uint8_t G;
+    uint8_t B;
+    uint8_t A;
+
+    void SetDimensions(float, float, float, float);
+};
+
+check_size(Card2D, 0x2C);

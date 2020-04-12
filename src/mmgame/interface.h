@@ -123,16 +123,44 @@
 #include "hooking.h"
 
 #include "node/node.h"
+#include "mmwidget/menu.h"
+#include "mmui/netarena.h"
 
 class mmInterface : public asNode
 {
 public:
-    char gap4C[0x7750 - sizeof(asNode)];
+    UIMenu* dword18;
+    UIMenu* dword1C;
+    char data2[0x14];
+    UIMenu* dword34;
+    char data21[0x4];
+    UIMenu* dword3C;
+    char data3[0x14];
+    NetArena* dword54;
+    char data4[0x20];
+    uint8_t dword78;
+    char gap4C[0x76EC - sizeof(asNode)];
 
     mmInterface();
     ~mmInterface();
 
-    void ShowMain(int firstLoad);
+    void MessageCallback(void*, void*);
+    void MessageCallback2(void*, void*);
+
+    void Switch(int, int);
+    void LobbySwitch(int, int);
+    void GetUnlockedCar();
+    void GetUnlockedColor();
+    void ShowMain(int);
+    void JoinLobbyGame();
+    void PlayerSetState();
+    void InitLobby();
+    int LobbyCreate();
+    void SendMsg(int, int);
+    void RefreshMe();
 };
 
 check_size(mmInterface, 0x7750);
+
+inline extern_var(0x5E0CFA, char, GraphicsChange);
+inline extern_var(0x5E0CFB, char, GraphicsPreviousMenu);

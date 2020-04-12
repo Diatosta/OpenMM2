@@ -145,6 +145,7 @@ public:
 
     void DrawBegin();
     void DrawEnd();
+    void SetUnderlay(char*);
 };
 
 check_size(asCamera, 0x170);

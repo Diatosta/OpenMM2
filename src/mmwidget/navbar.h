@@ -39,4 +39,24 @@
     0x5B32C8 | const uiNavBar::`vftable' | ??_7uiNavBar@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "menu.h"
+#include <mmwidget\bm_button.h>
+
+class uiNavBar
+{
+public:
+    UIMenu menu;
+    char gap8C[24];
+    UIBMButton* dwordA4;
+    char dwordA8[4];
+    float floatAC;
+    float floatB0;
+    unsigned int dwordB4;
+    unsigned int dwordB8;
+
+    void TurnOnPrev();
+};
+
+check_size(uiNavBar, 0xBC);

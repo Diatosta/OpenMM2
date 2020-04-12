@@ -17,3 +17,23 @@
 */
 
 #include "menu.h"
+
+#include "manager.h"
+
+void UIMenu::Enable()
+{
+    stub<member_func_t<void, UIMenu>>(0x4E09D0, this);
+}
+
+void UIMenu::SetBstate(int a2)
+{
+    stub<member_func_t<void, UIMenu, int>>(0x4E0B20, this, a2);
+}
+
+void UIMenu::GetDimensions(float* a2, float* a3, float* a4, float* a5)
+{
+    *a2 = this->Position.x;
+    *a3 = this->Position.y;
+    *a4 = this->Scale.x;
+    *a5 = this->Scale.y;
+}

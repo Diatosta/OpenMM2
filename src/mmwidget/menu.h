@@ -89,4 +89,46 @@
     public: static float UIMenu::UI_RIGHT_MARGIN | ?UI_RIGHT_MARGIN@UIMenu@@2MA
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "node/node.h"
+#include "vector/vector2.h"
+
+class UIMenu
+{
+public:
+    asNode asNode;
+    unsigned int ActionSource;
+    unsigned int ActionState;
+    unsigned int dword20;
+    unsigned int MenuID;
+    unsigned int dword28;
+    unsigned int WidgetCount;
+    unsigned int dword30;
+    char ppWidgets[4];
+    const char* Name;
+    unsigned int dword3C;
+    unsigned int dword40;
+    unsigned int dword44;
+    Vector2 Position;
+    Vector2 Scale;
+    unsigned int dword58;
+    float scaleX;
+    float scaleYs;
+    unsigned int dword64;
+    unsigned int* pCurrentWidgetID;
+    unsigned int ActiveWidgetID;
+    unsigned int dword70;
+    unsigned int WidgetID;
+    unsigned int dword78;
+    unsigned int dword7C;
+    float dword80;
+    unsigned int dword84;
+    const char* Background;
+
+    void Enable();
+    void SetBstate(int);
+    void GetDimensions(float*, float*, float*, float*);
+};
+
+check_size(UIMenu, 0x8C);

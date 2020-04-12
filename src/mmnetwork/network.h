@@ -139,7 +139,9 @@ public:
     asNetwork();
     ~asNetwork();
 
+    int Initialize(int, int, int);
     void Logout(void);
+    int Send(unsigned long, int, void*, unsigned long, int);
 };
 
 check_size(asNetwork, 0x70);

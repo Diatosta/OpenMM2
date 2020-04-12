@@ -17,3 +17,66 @@
 */
 
 #include "card2d.h"
+
+void Card2D::SetDimensions(float x, float y, float w, float h)
+{
+    double v5;
+    float v7;
+
+    if (x >= 0.0)
+    {
+        if (x > 1.0)
+        {
+            x = 1.0;
+        }
+    }
+    else
+    {
+        x = 0.0;
+    }
+
+    if (y >= 0.0)
+    {
+        if (y > 1.0)
+        {
+            y = 1.0;
+        }
+    }
+    else
+    {
+        y = 0.0;
+    }
+
+    v5 = 1.0 - x;
+
+    if (w >= 0.0)
+    {
+        if (w > v5)
+        {
+            w = v5;
+        }
+    }
+    else
+    {
+        w = 0.0;
+    }
+
+    v7 = 1.0 - y;
+
+    if (h >= 0.0)
+    {
+        if (h > v7)
+        {
+            h = v7;
+        }
+    }
+    else
+    {
+        h = 0.0;
+    }
+
+    this->Pos.x = x;
+    this->Pos.y = y;
+    this->Size.x = w;
+    this->Size.y = h;
+}

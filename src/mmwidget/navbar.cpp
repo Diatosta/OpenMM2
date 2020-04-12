@@ -17,3 +17,9 @@
 */
 
 #include "navbar.h"
+
+void uiNavBar::TurnOnPrev()
+{
+    this->dwordA4->uiWidget.Node.Update();
+    this->dwordB4 = 0;
+}

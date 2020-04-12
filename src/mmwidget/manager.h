@@ -86,4 +86,46 @@
     0x6B012C | public: static class MenuManager * MenuManager::Instance | ?Instance@MenuManager@@2PAV1@A
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "navbar.h"
+#include "effects/card2d.h"
+#include "node/node.h"
+
+class MenuManager : asNode
+{
+public:
+    char data0[0xC];
+    uiNavBar* pNavBar;
+    char data01[8];
+    signed int FGColor;
+    signed int PUEnabled;
+    char data1[192];
+    UIMenu** ppMenus;
+    UIMenu* FocusedMenu;
+    Card2D* pCard;
+    char data21[8];
+    signed int nMenuCount;
+    char data3[40];
+    signed int CurrentMenu;
+    char data31[16];
+    const char* DefaultBackground;
+
+    MenuManager();
+    ~MenuManager();
+
+    void AddPointer();
+    void CheckBG(UIMenu*);
+    void SetDefaultBackgroundImage(char*);
+    void SetBackgroundImage(char*);
+    void AdjustPopupCard(UIMenu*);
+    void OpenDialog(int);
+    void Enable(int);
+    void EnableNavBar();
+    int FindMenu(int);
+    void SetFocus(UIMenu*);
+};
+
+check_size(MenuManager, 0x150);
+
+inline extern_var(0x6B012C, MenuManager*, MENUMGR);

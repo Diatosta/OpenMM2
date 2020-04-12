@@ -51,4 +51,15 @@
     0x6B0418 | private: static class AudSoundBase * UIBMButton::s_pSound | ?s_pSound@UIBMButton@@0PAVAudSoundBase@@A
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include <mmwidget\widget.h>
+
+class UIBMButton
+{
+public:
+    uiWidget uiWidget;
+    char data[0x44];
+};
+
+check_size(UIBMButton, 0xD8);

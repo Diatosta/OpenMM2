@@ -42,3 +42,8 @@ void asCamera::DrawEnd()
         }
     }
 }
+
+void asCamera::SetUnderlay(char* a2)
+{
+    return stub<member_func_t<void, asCamera, char*>>(0x4A2EF0, this, a2);
+}

@@ -17,3 +17,13 @@
 */
 
 #include "netarena.h"
+
+void NetArena::SetHost(int a2)
+{
+    stub<member_func_t<void, NetArena, int>>(0x5003A0, this, a2);
+}
+
+void NetArena::SetMyStatus(int a2)
+{
+    stub<member_func_t<void, NetArena, int>>(0x500620, this, a2);
+}

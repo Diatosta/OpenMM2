@@ -30,7 +30,18 @@ asNetwork::~asNetwork()
     Logout();
 }
 
+int asNetwork::Initialize(int a2, int a3, int a4)
+{
+    return stub<member_func_t<int, asNetwork, int, int, int>>(0x56FDC0, this, a2, a3, a4);
+}
+
 void asNetwork::Logout(void)
 {
     return stub<member_func_t<void, asNetwork>>(0x5701C0, this);
+}
+
+int asNetwork::Send(unsigned long a2, int a3, void* a4, unsigned long a5, int a6)
+{
+    return stub<member_func_t<int, asNetwork, unsigned long, int, void*, unsigned long, int>>(
+        0x572200, this, a2, a3, a4, a5, a6);
 }

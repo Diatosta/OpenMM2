@@ -28,4 +28,15 @@
     0x4E74B0 | public: void __thiscall uiWidget::SetToolTipText(struct LocString *) | ?SetToolTipText@uiWidget@@QAEXPAULocString@@@Z
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "node/node.h"
+
+class uiWidget
+{
+public:
+    asNode Node;
+    char data[0x7C];
+};
+
+check_size(uiWidget, 0x94);

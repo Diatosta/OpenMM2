@@ -17,3 +17,8 @@
 */
 
 #include "vehlist.h"
+
+mmVehInfo* mmVehList::GetVehicleInfo(char* a2)
+{
+    return stub<member_func_t<mmVehInfo*, mmVehList, char*>>(0x524610, this, a2);
+}
