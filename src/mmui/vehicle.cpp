@@ -17,3 +17,8 @@
 */
 
 #include "vehicle.h"
+
+Vehicle::Vehicle(int a2)
+{
+    stub<member_func_t<void, Vehicle, int>>(0x5056D0, this, a2);
+}

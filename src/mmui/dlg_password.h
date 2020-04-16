@@ -30,4 +30,12 @@
     0x5B3F6C | const Dialog_Password::`vftable' | ??_7Dialog_Password@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_Password : public PUMenuBase
+{
+public:
+    Dialog_Password(int, float, float, float, float, char*);
+};

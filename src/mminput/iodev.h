@@ -39,4 +39,13 @@
     0x5B5294 | const mmIODev::`vftable' | ??_7mmIODev@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmcityinfo/infobase.h"
+
+class mmIODev
+{
+    char gap0[0xA8];
+};
+
+check_size(mmIODev, 0xA8);

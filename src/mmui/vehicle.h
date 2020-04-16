@@ -32,4 +32,12 @@
     0x5B453C | const Vehicle::`vftable' | ??_7Vehicle@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "vselect.h"
+
+class Vehicle : public VehicleSelectBase
+{
+public:
+    Vehicle(int);
+};

@@ -20,6 +20,11 @@
 
 #include "manager.h"
 
+void UIMenu::AssignBackground(char* a2)
+{
+    stub<member_func_t<void, UIMenu, char*>>(0x4E0980, this, a2);
+}
+
 void UIMenu::Enable()
 {
     stub<member_func_t<void, UIMenu>>(0x4E09D0, this);

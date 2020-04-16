@@ -62,4 +62,12 @@
     0x5B445C | const NetSelectMenu::`vftable' | ??_7NetSelectMenu@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class NetSelectMenu : public UIMenu
+{
+public:
+    NetSelectMenu(int);
+};

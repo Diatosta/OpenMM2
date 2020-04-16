@@ -30,4 +30,13 @@
     0x5B4094 | const Dialog_Message::`vftable' | ??_7Dialog_Message@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_Message : public PUMenuBase
+{
+public:
+    Dialog_Message(int, float, float, float, float, char*);
+    void Init(int, char*, char*);
+};

@@ -17,3 +17,8 @@
 */
 
 #include "racehost.h"
+
+HostRaceMenu::HostRaceMenu(int a2)
+{
+    stub<member_func_t<void, HostRaceMenu, int>>(0x5006A0, this, a2);
+}

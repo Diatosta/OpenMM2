@@ -32,4 +32,16 @@
     0x5B4124 | const Dialog_Serial::`vftable' | ??_7Dialog_Serial@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_Serial : public PUMenuBase
+{
+public:
+    char gap0[0x144 - sizeof(PUMenuBase)];
+
+    Dialog_Serial(int, float, float, float, float, char*);
+};
+
+check_size(Dialog_Serial, 0x144);

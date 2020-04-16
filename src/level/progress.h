@@ -40,5 +40,16 @@
 class lvlProgress
 {
 public:
+    static void BeginTask(char const*);
+    static void UpdateTask(float, bool);
+    static void EndTask(void);
     static void SetCallback(void (*callback)(char const*, int));
 };
+
+static inline extern_var(0x631654, void (*)(const char*, int), progressCB);
+static inline extern_var(0x631658, float*, float_631658);
+static inline extern_var(0x631674, float*, sm_SubTaskEnd);
+static inline extern_var(0x631678, char**, sm_SubTaskName);
+static inline extern_var(0x631698, int, sm_SubTaskLevel);
+static inline extern_var(0x63169C, float*, sm_SubTaskStart);
+static inline extern_var(0x6316A0, float*, float_6316A0);

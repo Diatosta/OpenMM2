@@ -45,4 +45,12 @@
     0x5B45E0 | const MainMenu::`vftable' | ??_7MainMenu@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class MainMenu : public UIMenu
+{
+public:
+    MainMenu(int);
+};

@@ -17,3 +17,8 @@
 */
 
 #include "netselect.h"
+
+NetSelectMenu::NetSelectMenu(int a2)
+{
+    stub<member_func_t<void, NetSelectMenu, int>>(0x504130, this, a2);
+}

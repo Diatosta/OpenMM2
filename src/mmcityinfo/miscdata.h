@@ -38,4 +38,16 @@
     0x5B5210 | const mmRecord::`vftable' | ??_7mmRecord@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmcityinfo/infobase.h"
+
+class mmMiscData : public mmInfoBase
+{
+public:
+    char gap0[0x9C];
+
+    mmMiscData();
+};
+
+check_size(mmMiscData, 0x9C);

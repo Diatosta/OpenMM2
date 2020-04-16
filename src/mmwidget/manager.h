@@ -92,7 +92,7 @@
 #include "effects/card2d.h"
 #include "node/node.h"
 
-class MenuManager : asNode
+class MenuManager : public asNode
 {
 public:
     char data0[0xC];
@@ -114,6 +114,7 @@ public:
     MenuManager();
     ~MenuManager();
 
+    void Init(int, int, char*);
     void AddPointer();
     void CheckBG(UIMenu*);
     void SetDefaultBackgroundImage(char*);
@@ -122,8 +123,10 @@ public:
     void OpenDialog(int);
     void Enable(int);
     void EnableNavBar();
+    void DisableNavBar(void);
     int FindMenu(int);
     void SetFocus(UIMenu*);
+    void AllocateMenuSwitchAudio(void);
 };
 
 check_size(MenuManager, 0x150);

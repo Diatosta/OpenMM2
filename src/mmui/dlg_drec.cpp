@@ -17,3 +17,9 @@
 */
 
 #include "dlg_drec.h"
+
+Dialog_DriverRec::Dialog_DriverRec(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_DriverRec, int, float, float, float, float, char*>>(
+        0x4FD3D0, this, a2, a3, a4, a5, a6, a7);
+}

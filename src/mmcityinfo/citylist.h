@@ -41,4 +41,25 @@
     0x6B1CA0 | class mmCityList * CityListPtr | ?CityListPtr@@3PAVmmCityList@@A
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmcityinfo/cityinfo.h"
+
+class mmCityList
+{
+public:
+    int dword4;
+    int dword8;
+    int dwordC;
+
+    mmCityList();
+    virtual ~mmCityList();
+
+    void SetCurrentCity(char*);
+    mmCityInfo* GetCurrentCity(void);
+    void Load(char*);
+    void LoadAll(void);
+};
+
+static inline extern_var(0x5244C0, void (*)(const char*, bool, void*), loadCityCB);
+inline extern_var(0x6B1CA0, mmCityList*, CityList);

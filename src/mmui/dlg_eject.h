@@ -39,4 +39,15 @@
     0x5B3DF8 | const Dialog_Eject::`vftable' | ??_7Dialog_Eject@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "data/callback.h"
+#include "pu_menu.h"
+
+class Dialog_Eject : public PUMenuBase
+{
+public:
+    Dialog_Eject(int, float, float, float, float, char*);
+
+    void SetBootCB(datCallback);
+};

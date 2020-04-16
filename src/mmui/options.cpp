@@ -17,3 +17,8 @@
 */
 
 #include "options.h"
+
+OptionsMenu::OptionsMenu(int a2)
+{
+    stub<member_func_t<void, OptionsMenu, int>>(0x502950, this, a2);
+}

@@ -17,3 +17,35 @@
 */
 
 #include "citylist.h"
+
+#include "data/asset.h"
+
+mmCityList::mmCityList()
+{
+    stub<member_func_t<void, mmCityList>>(0x524160, this);
+}
+
+mmCityList::~mmCityList()
+{
+    stub<member_func_t<void, mmCityList>>(0x524180, this);
+}
+
+void mmCityList::SetCurrentCity(char* a2)
+{
+    stub<member_func_t<void, mmCityList, char*>>(0x5242C0, this, a2);
+}
+
+mmCityInfo* mmCityList::GetCurrentCity()
+{
+    return stub<member_func_t<mmCityInfo*, mmCityList>>(0x524320, this);
+}
+
+void mmCityList::Load(char* a2)
+{
+    stub<member_func_t<void, mmCityList, char*>>(0x524330, this, a2);
+}
+
+void mmCityList::LoadAll()
+{
+    stub<member_func_t<void, mmCityList>>(0x5244F0, this);
+}

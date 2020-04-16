@@ -17,3 +17,8 @@
 */
 
 #include "playercfg.h"
+
+mmPlayerConfig::mmPlayerConfig()
+{
+    stub<member_func_t<void, mmPlayerConfig>>(0x5254B0, this);
+}

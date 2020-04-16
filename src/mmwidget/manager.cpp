@@ -28,6 +28,11 @@ MenuManager::~MenuManager()
     stub<member_func_t<void, MenuManager>>(0x4E3490, this);
 }
 
+void MenuManager::Init(int a2, int a3, char* a4)
+{
+    stub<member_func_t<void, MenuManager, int, int, char*>>(0x4E3820, this, a2, a3, a4);
+}
+
 void MenuManager::AddPointer()
 {
     stub<member_func_t<void, MenuManager>>(0x4E4030, this);
@@ -101,9 +106,14 @@ void MenuManager::EnableNavBar()
 
     if (navBar)
     {
-        navBar->menu.asNode.Flags |= 1u;
+        navBar->menu.Flags |= 1u;
         navBar->TurnOnPrev();
     }
+}
+
+void MenuManager::DisableNavBar()
+{
+    stub<member_func_t<void, MenuManager>>(0x4E5290, this);
 }
 
 int MenuManager::FindMenu(int a2)
@@ -137,4 +147,9 @@ int MenuManager::FindMenu(int a2)
 void MenuManager::SetFocus(UIMenu* menu)
 {
     this->FocusedMenu = menu;
+}
+
+void MenuManager::AllocateMenuSwitchAudio()
+{
+    stub<member_func_t<void, MenuManager>>(0x4E5C90, this);
 }

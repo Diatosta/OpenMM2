@@ -65,4 +65,12 @@
     public: static float VehicleSelectBase::PolarApproach | ?PolarApproach@VehicleSelectBase@@2MA
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class VehicleSelectBase : public UIMenu
+{
+public:
+    void AllSetCar(char*, int);
+};

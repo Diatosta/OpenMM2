@@ -94,10 +94,9 @@
 #include "node/node.h"
 #include "vector/vector2.h"
 
-class UIMenu
+class UIMenu : public asNode
 {
 public:
-    asNode asNode;
     unsigned int ActionSource;
     unsigned int ActionState;
     unsigned int dword20;
@@ -126,6 +125,7 @@ public:
     unsigned int dword84;
     const char* Background;
 
+    void AssignBackground(char*);
     void Enable();
     void SetBstate(int);
     void GetDimensions(float*, float*, float*, float*);

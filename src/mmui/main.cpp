@@ -17,3 +17,8 @@
 */
 
 #include "main.h"
+
+MainMenu::MainMenu(int a2)
+{
+    stub<member_func_t<void, MainMenu, int>>(0x505C30, this, a2);
+}

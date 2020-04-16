@@ -36,4 +36,12 @@
     0x5B44A4 | const RaceMenu::`vftable' | ??_7RaceMenu@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class RaceMenu : public UIMenu
+{
+public:
+    RaceMenu(int);
+};

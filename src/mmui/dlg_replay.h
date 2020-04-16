@@ -44,4 +44,12 @@
     0x5B3EDC | const Dialog_Replay::`vftable' | ??_7Dialog_Replay@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_Replay : public PUMenuBase
+{
+public:
+    Dialog_Replay(int, float, float, float, float, char*);
+};

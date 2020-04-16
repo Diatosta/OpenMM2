@@ -17,3 +17,9 @@
 */
 
 #include "dlg_password.h"
+
+Dialog_Password::Dialog_Password(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_Password, int, float, float, float, float, char*>>(
+        0x4FB010, this, a2, a3, a4, a5, a6, a7);
+}

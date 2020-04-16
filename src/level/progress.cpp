@@ -18,7 +18,20 @@
 
 #include "progress.h"
 
-inline extern_var(0x631654, void (*)(const char*, int), progressCB);
+void __cdecl lvlProgress::BeginTask(char const* a1)
+{
+    stub<cdecl_t<void, const char*>>(0x462E30, a1);
+}
+
+void __cdecl lvlProgress::UpdateTask(float a1, bool a2)
+{
+    stub<cdecl_t<void, float, bool>>(0x462E80, a1, a2);
+}
+
+void __cdecl lvlProgress::EndTask()
+{
+    stub<cdecl_t<void>>(0x462E80);
+}
 
 void lvlProgress::SetCallback(void (*callback)(char const*, int))
 {

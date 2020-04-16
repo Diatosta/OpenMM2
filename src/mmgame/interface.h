@@ -125,24 +125,94 @@
 #include "node/node.h"
 #include "mmwidget/menu.h"
 #include "mmui/netarena.h"
+#include "mmui/optionsbase.h"
+#include "mmui/audio.h"
+#include "mmui/ctrlcus.h"
+#include "mmui/control.h"
+#include "mmui/vehicle.h"
+#include "mmui/racebase.h"
+#include "mmui/pu_menu.h"
+#include "mmui/dlg_eject.h"
+#include "mmui/dlg_msg.h"
+#include "mmui/dlg_hoff.h"
+#include "mmcityinfo/playercfg.h"
+#include "mmcityinfo/playerdir.h"
+#include "mmcityinfo/miscdata.h"
+#include "data/string.h"
 
 class mmInterface : public asNode
 {
 public:
-    UIMenu* dword18;
-    UIMenu* dword1C;
-    char data2[0x14];
-    UIMenu* dword34;
-    char data21[0x4];
-    UIMenu* dword3C;
-    char data3[0x14];
-    NetArena* dword54;
+    UIMenu* pMainMenu;
+    UIMenu* pRaceMenu;
+    PUMenuBase* pDialog_City2;
+    Vehicle* pVehicle;
+    UIMenu* pVehShowcase;
+    UIMenu* pNetSelectMenu;
+    UIMenu* pAboutMenu;
+    UIMenu* pCrashCourse;
+    UIMenu* pCrashCourseIntro;
+    UIMenu* pOptionsMenu;
+    UIMenu* pGraphicsOptions;
+    AudioOptions* pAudioOptions;
+    ControlSetup* pControlSetup;
+    ControlCustom* pControlCustom;
+    RaceMenuBase* pHostRaceMenu;
+    NetArena* pNetArena;
     char data4[0x20];
     uint8_t dword78;
-    char gap4C[0x76EC - sizeof(asNode)];
+    uint8_t dword7C;
+    uint8_t dword80;
+    PUMenuBase* pDialog_TCPIP;
+    PUMenuBase* pDialog_ControlAssign;
+    PUMenuBase* pDialog_Serial;
+    PUMenuBase* pDialog_NewPlayer;
+    PUMenuBase* pDialog_DriverRec;
+    Dialog_HallOfFame* pDialog_HallOfFame;
+    PUMenuBase* pDialog_RaceEnvironment;
+    PUMenuBase* pDialog_Password;
+    PUMenuBase* pDialog_Host;
+    PUMenuBase* pDialog_Replay;
+    PUMenuBase* pDialog_ReplayEdit;
+    Dialog_Eject* pDialog_Eject;
+    Dialog_Message* pDialog_MessageB4;
+    Dialog_Message* pDialog_MessageB8;
+    Dialog_Message* pDialog_MessageBC;
+    Dialog_Message* pDialog_MessageC0;
+    Dialog_Message* pDialog_MessageC4;
+    Dialog_Message* pDialog_MessageC8;
+    Dialog_Message* pDialog_MessageCC;
+    Dialog_Message* pDialog_MessageD0;
+    Dialog_Message* pDialog_MessageD4;
+    Dialog_Message* pDialog_MessageD8;
+    Dialog_Message* pDialog_MessageDC;
+    Dialog_Message* pDialog_MessageE0;
+    mmPlayerDirectory* pPlayerDirectoryE4;
+    char gapE8[0xE0];
+    mmPlayerConfig* pPlayerConfig1BC;
+    char gap1C0[0x8];
+    mmPlayerConfig* pPlayerConfig1C8;
+    char gap1CC[0x7168];
+    mmMiscData* pMiscData7334;
+    char gap7338[0xC];
+    mmMiscData* pMiscData7340;
+    char gap7344[0x1A0];
+    mmMiscData* pMiscData74E4;
+    char gap74E8[0x1A0];
+    int dword7688;
+    int dword768C;
+    int dword7690;
+    char gap7694[0x18];
+    int dword76AC;
+    char gap76B0[0x90];
+    string* string7740;
+    char gap7744[0x4];
+    string* string7748;
+    char gap774C[0x4];
 
     mmInterface();
-    ~mmInterface();
+    void InitPlayerInfo(void);
+    virtual ~mmInterface() override;
 
     void MessageCallback(void*, void*);
     void MessageCallback2(void*, void*);
@@ -153,14 +223,20 @@ public:
     void GetUnlockedColor();
     void ShowMain(int);
     void JoinLobbyGame();
+    void PlayerLoadCB(void);
     void PlayerSetState();
     void InitLobby();
     int LobbyCreate();
     void SendMsg(int, int);
     void RefreshMe();
+    void PlayUIMusic(void);
 };
 
-check_size(mmInterface, 0x7750);
+void __cdecl GetHostCars(string*);
+
+//check_size(mmInterface, 0x7750);
 
 inline extern_var(0x5E0CFA, char, GraphicsChange);
 inline extern_var(0x5E0CFB, char, GraphicsPreviousMenu);
+inline extern_var(0x627374, bool, bool_627374);
+inline extern_var(0x409010, void (*)(void), sub_409010);

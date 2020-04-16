@@ -35,4 +35,16 @@
     0x5B42F4 | const ControlCustom::`vftable' | ??_7ControlCustom@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmui/optionsbase.h"
+
+class ControlCustom : public OptionsBase
+{
+public:
+    char gap0[0x7210];
+    void* dword7210;
+    char gap7214[0x4];
+
+    ControlCustom(int);
+};

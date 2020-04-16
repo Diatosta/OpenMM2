@@ -53,6 +53,8 @@ public:
     static void FullPath(char* buffer, int bufferLength, const char* path, const char* ext);
     static void FullPath(char* buffer, int bufferLength, const char* prefix, const char* path, const char* ext);
 
+    static int EnumFiles(char const*, void(*callback)(char const*, bool, void*), void*, bool);
+
     static inline extern_var(0x6A3B8C, char[128], sm_Path);
     static inline extern_var(0x5CE760, bool, sm_IgnorePrefix);
 };

@@ -25,4 +25,13 @@
     0x4C81D0 | char * __cdecl formatf(char *,int,char const *,...) | ?formatf@@YAPADPADHPBDZZ
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+class string
+{
+public:
+    char* pBuffer;
+    int nBufferSize;
+
+    string();
+};

@@ -18,6 +18,11 @@
 
 #include "netarena.h"
 
+NetArena::NetArena(int a2)
+{
+    stub<member_func_t<void, NetArena, int>>(0x4FE880, this, a2);
+}
+
 void NetArena::SetHost(int a2)
 {
     stub<member_func_t<void, NetArena, int>>(0x5003A0, this, a2);

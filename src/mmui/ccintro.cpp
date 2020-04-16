@@ -17,3 +17,8 @@
 */
 
 #include "ccintro.h"
+
+CrashCourseIntro::CrashCourseIntro(int a2)
+{
+    stub<member_func_t<void, CrashCourseIntro, int>>(0x502D40, this, a2);
+}

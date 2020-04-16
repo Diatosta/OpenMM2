@@ -35,4 +35,6 @@
 
 #include "core/stream.h"
 
+int coreRawEnumFiles(char const*, void(*callback)(char const*, bool, void*), void*);
+
 inline extern_var(0x5CEE28, coreFileMethods, coreFileStandard);

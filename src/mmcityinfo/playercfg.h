@@ -54,4 +54,30 @@
     float ParticleMultiplier | ?ParticleMultiplier@@3MA
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmcityinfo/infobase.h"
+#include "mminput/iodev.h"
+
+class mmGfxCFG
+{
+    char gap0[0x38];
+};
+
+check_size(mmGfxCFG, 0x38);
+
+class mmPlayerConfig : public mmInfoBase
+{
+public:
+    char gap0[0x8C];
+    mmGfxCFG* GraphicsConfig;
+    char gap90[0x48];
+    char CurrentAudioDevice[200];
+    char gap1A0[0x38];
+    mmIODev IODevices[170];
+    char gap7168[0x8];
+
+    mmPlayerConfig();
+};
+
+check_size(mmPlayerConfig, 0x7170);

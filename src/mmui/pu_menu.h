@@ -37,4 +37,12 @@
     0x5B4A8C | const PUMenuBase::`vftable' | ??_7PUMenuBase@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class PUMenuBase : UIMenu
+{
+    char gap0[0x78];
+    int dword78;
+};

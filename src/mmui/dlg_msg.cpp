@@ -17,3 +17,14 @@
 */
 
 #include "dlg_msg.h"
+
+Dialog_Message::Dialog_Message(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_Message, int, float, float, float, float, char*>>(
+        0x4FD3D0, this, a2, a3, a4, a5, a6, a7);
+}
+
+void Dialog_Message::Init(int a2, char* a3, char* a4)
+{
+    stub<member_func_t<void, Dialog_Message, int, char*, char*>>(0x4FD4F0, this, a2, a3, a4);
+}

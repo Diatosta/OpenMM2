@@ -17,3 +17,8 @@
 */
 
 #include "miscdata.h"
+
+mmMiscData::mmMiscData()
+{
+    stub<member_func_t<void, mmMiscData>>(0x524A30, this);
+}

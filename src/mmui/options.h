@@ -31,4 +31,12 @@
     0x5B434C | const OptionsMenu::`vftable' | ??_7OptionsMenu@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class OptionsMenu : public UIMenu
+{
+public:
+    OptionsMenu(int);
+};

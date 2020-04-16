@@ -17,3 +17,9 @@
 */
 
 #include "dlg_ctrl.h"
+
+Dialog_ControlAssign::Dialog_ControlAssign(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_ControlAssign, int, float, float, float, float, char*>>(
+        0x4FE620, this, a2, a3, a4, a5, a6, a7);
+}

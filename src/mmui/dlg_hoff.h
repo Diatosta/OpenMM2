@@ -34,4 +34,14 @@
     0x5B4000 | const Dialog_HallOfFame::`vftable' | ??_7Dialog_HallOfFame@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_HallOfFame : public PUMenuBase
+{
+public:
+    Dialog_HallOfFame(int, float, float, float, float, char*);
+
+    void InitRaceRecord(void);
+};

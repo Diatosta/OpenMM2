@@ -29,4 +29,12 @@
     0x5B416C | const Dialog_ControlAssign::`vftable' | ??_7Dialog_ControlAssign@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_ControlAssign : public PUMenuBase
+{
+public:
+    Dialog_ControlAssign(int, float, float, float, float, char*);
+};

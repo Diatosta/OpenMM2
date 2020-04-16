@@ -46,4 +46,20 @@
     0x5B522C | const mmPlayerDirectory::`vftable' | ??_7mmPlayerDirectory@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmcityinfo/infobase.h"
+
+class mmPlayerDirectory
+{
+public:
+    char data1[0x84];
+    int dword84 {6};
+    int dword88 {0};
+    void* pVoid8C {nullptr};
+    void* pVoid90 {nullptr};
+
+    mmPlayerDirectory() = default;
+};
+
+check_size(mmPlayerDirectory, 0x94);

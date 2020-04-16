@@ -20,6 +20,7 @@
 
 #include "core/output.h"
 #include "core/stream.h"
+#include "core/file.h"
 
 void datAssetManager::SetPath(const char* path)
 {
@@ -132,4 +133,26 @@ void datAssetManager::FullPath(char* buffer, int bufferLength, const char* prefi
     }
 
     ageDebug(assetDebug, "FullPath(%s,%s,%s) = %s", prefix, path, ext, buffer);
+}
+
+int datAssetManager::EnumFiles(char const* fileName, void(*callback)(char const*, bool, void*), void* context, bool physicalFiles)
+{
+    char path[128];
+
+    if (strchr(fileName, '/') || strchr(fileName, '\\') || fileName[1] == ':')
+    {
+        path[0] = 0;
+    }
+    else
+    {
+        strcpy(path, sm_Path);
+    }
+
+    strcat(path, fileName);
+    if (physicalFiles)
+    {
+        return coreRawEnumFiles(path, callback, context);
+    }
+
+    return Stream::sm_DefaultOpenMethods->EnumFiles(path, callback, context);
 }

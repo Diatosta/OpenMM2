@@ -52,4 +52,16 @@
 
 #include "hooking.h"
 
+#include "optionsbase.h"
+
+class GraphicsOptions : public OptionsBase
+{
+public:
+    char gap0[0x7228 - sizeof(OptionsBase)];
+
+    GraphicsOptions(int);
+};
+
 inline extern_var(0x6B0454, uint32_t, mmCpuSpeed);
+
+check_size(GraphicsOptions, 0x7228);

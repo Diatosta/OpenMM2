@@ -17,3 +17,8 @@
 */
 
 #include "file.h"
+
+int coreRawEnumFiles(char const* a1, void(*callback)(char const*, bool, void*), void* context)
+{
+    return stub<func_t<int, const char*, void(*)(const char*, bool, void*), void*>>(0x4CA2C0, a1, callback, context);
+}

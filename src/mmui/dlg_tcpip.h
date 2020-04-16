@@ -31,4 +31,14 @@
     0x5B41B4 | const Dialog_TCPIP::`vftable' | ??_7Dialog_TCPIP@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_TCPIP : public PUMenuBase
+{
+public:
+    char gap0[0xEC];
+
+    Dialog_TCPIP(int, float, float, float, float, char*);
+};

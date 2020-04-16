@@ -54,4 +54,11 @@
     0x6B0F30 | public: static class mmRaceData RaceMenuBase::BlitzData | ?BlitzData@RaceMenuBase@@2VmmRaceData@@A
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class RaceMenuBase : public UIMenu
+{
+
+};

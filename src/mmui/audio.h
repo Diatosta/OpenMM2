@@ -56,4 +56,26 @@
     0x5B3D9C | const AudioOptions::`vftable' | ??_7AudioOptions@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "optionsbase.h"
+
+class AudioOptions : public OptionsBase
+{
+public:
+    char gap0[0x7378 - sizeof(OptionsBase)];
+
+    AudioOptions(int);
+
+    int FindDevice(char*);
+    char* GetCurrentDeviceName(void);
+    void ResetStereo(void);
+    void ResetSoundFX(void);
+    void ResetMusic(void);
+    void ResetAmbient(void);
+    void ResetSoundQuality(void);
+    void ResetCommentary(void);
+    void SetDevice(int);
+};
+
+check_size(AudioOptions, 0x7378);

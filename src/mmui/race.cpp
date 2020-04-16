@@ -17,3 +17,8 @@
 */
 
 #include "race.h"
+
+RaceMenu::RaceMenu(int a2)
+{
+    stub<member_func_t<void, RaceMenu, int>>(0x505110, this, a2);
+}

@@ -17,3 +17,8 @@
 */
 
 #include "control.h"
+
+ControlSetup::ControlSetup(int a2)
+{
+    stub<member_func_t<void, ControlSetup, int>>(0x501860, this, a2);
+}

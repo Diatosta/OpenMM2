@@ -17,3 +17,8 @@
 */
 
 #include "graphics.h"
+
+GraphicsOptions::GraphicsOptions(int a2)
+{
+    stub<member_func_t<void, GraphicsOptions, int>>(0x4F4280, this, a2);
+}

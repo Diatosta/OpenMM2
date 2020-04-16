@@ -17,3 +17,8 @@
 */
 
 #include "vselect.h"
+
+void VehicleSelectBase::AllSetCar(char* a2, int a3)
+{
+    stub<member_func_t<void, VehicleSelectBase, char*, int>>(0x4F6AF0, this, a2, a3);
+}

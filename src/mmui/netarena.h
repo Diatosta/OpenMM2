@@ -58,12 +58,17 @@
 
 #include "hooking.h"
 
-class NetArena
+#include "mmwidget/menu.h"
+
+class NetArena : public UIMenu
 {
 public:
-    char data1[0x78];
-    int dword78;
+    char gap8C[0xB8];
+
+    NetArena(int);
 
     void SetHost(int);
     void SetMyStatus(int);
 };
+
+check_size(NetArena, 0x144);

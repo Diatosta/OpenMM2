@@ -17,3 +17,8 @@
 */
 
 #include "ctrlcus.h"
+
+ControlCustom::ControlCustom(int a2)
+{
+    stub<member_func_t<void, ControlCustom, int>>(0x502780, this, a2);
+}

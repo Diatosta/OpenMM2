@@ -17,3 +17,8 @@
 */
 
 #include "crash.h"
+
+CrashCourse::CrashCourse(int a2)
+{
+    stub<member_func_t<void, CrashCourse, int>>(0x503070, this, a2);
+}

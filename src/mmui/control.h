@@ -46,4 +46,18 @@
     0x5B429C | const ControlSetup::`vftable' | ??_7ControlSetup@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "optionsbase.h"
+
+class ControlSetup : public OptionsBase
+{
+public:
+    char gap0[0x722C - sizeof(OptionsBase)];
+    void* dword722C;
+    char gap7230[0x20];
+
+    ControlSetup(int);
+};
+
+check_size(ControlSetup, 0x7250);

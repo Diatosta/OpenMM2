@@ -17,3 +17,15 @@
 */
 
 #include "dlg_hoff.h"
+
+Dialog_HallOfFame::Dialog_HallOfFame(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_HallOfFame, int, float, float, float, float, char*>>(
+        0x4FBA70, this, a2, a3, a4, a5, a6, a7);
+}
+
+void Dialog_HallOfFame::InitRaceRecord()
+{
+    stub<member_func_t<void, Dialog_HallOfFame>>(
+        0x4FC6A0, this);
+}

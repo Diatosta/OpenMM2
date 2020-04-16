@@ -47,7 +47,17 @@
 class mmVehList
 {
 public:
+    char gap0[0x8];
+    mmVehInfo* dword8;
+
+    mmVehList();
+
     mmVehInfo* GetVehicleInfo(char*);
+    void SetDefaultVehicle(char*);
+    void Load(char*);
+    void LoadAll(void);
 };
 
-inline extern_var(0x6B1CA8, mmVehList, VehicleList);
+static inline extern_var(0x631654, void (*)(const char*, bool, void*), loadVehListCB);
+inline extern_var(0x5D4814, char**, vehLoadNameList);
+inline extern_var(0x6B1CA8, mmVehList*, VehicleList);

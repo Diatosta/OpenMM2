@@ -32,4 +32,12 @@
     0x5B4584 | const AboutMenu::`vftable' | ??_7AboutMenu@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class AboutMenu : public UIMenu
+{
+public:
+    AboutMenu(int);
+};

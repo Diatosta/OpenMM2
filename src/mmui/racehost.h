@@ -47,4 +47,16 @@
     int * Limit_ValueTable | ?Limit_ValueTable@@3PAHA
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "racebase.h"
+
+class HostRaceMenu : public RaceMenuBase
+{
+public:
+    char gap0[0x1B8 - sizeof(RaceMenuBase)];
+
+    HostRaceMenu(int);
+};
+
+check_size(HostRaceMenu, 0x1B8);

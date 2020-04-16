@@ -18,7 +18,30 @@
 
 #include "vehlist.h"
 
+#include "data/asset.h"
+#include <core\output.h>
+
+mmVehList::mmVehList()
+{
+    stub<member_func_t<void, mmVehList>>(0x524550, this);
+}
+
 mmVehInfo* mmVehList::GetVehicleInfo(char* a2)
 {
     return stub<member_func_t<mmVehInfo*, mmVehList, char*>>(0x524610, this, a2);
+}
+
+void mmVehList::SetDefaultVehicle(char* a2)
+{
+    stub<member_func_t<void, mmVehList, char*>>(0x524690, this, a2);
+}
+
+void mmVehList::Load(char* a1)
+{
+    stub<member_func_t<void, mmVehList, char*>>(0x524720, this, a1);
+}
+
+void mmVehList::LoadAll()
+{
+    stub<member_func_t<void, mmVehList>>(0x524950, this);
 }

@@ -35,4 +35,12 @@
     0x5B404C | const Dialog_DriverRec::`vftable' | ??_7Dialog_DriverRec@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_DriverRec : public PUMenuBase
+{
+public:
+    Dialog_DriverRec(int, float, float, float, float, char*);
+};

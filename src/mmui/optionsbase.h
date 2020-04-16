@@ -32,4 +32,16 @@
     0x5B4AD8 | const OptionsBase::`vftable' | ??_7OptionsBase@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "mmwidget/menu.h"
+
+class OptionsBase : public UIMenu
+{
+public:
+    char gap0[0x7210 - sizeof(UIMenu)];
+    void* dword7210;
+    char gap7214[0x4];
+};
+
+check_size(OptionsBase, 0x7218);

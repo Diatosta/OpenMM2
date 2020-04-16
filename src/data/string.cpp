@@ -17,3 +17,9 @@
 */
 
 #include "string.h"
+
+string::string()
+{
+    nBufferSize = 51;
+    pBuffer = new char[nBufferSize];
+}

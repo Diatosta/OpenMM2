@@ -17,3 +17,8 @@
 */
 
 #include "about.h"
+
+AboutMenu::AboutMenu(int a2)
+{
+    stub<member_func_t<void, AboutMenu, int>>(0x5058D0, this, a2);
+}

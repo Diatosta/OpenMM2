@@ -30,4 +30,12 @@
     0x5B40DC | const Dialog_NewPlayer::`vftable' | ??_7Dialog_NewPlayer@@6B@
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "pu_menu.h"
+
+class Dialog_NewPlayer : public PUMenuBase 
+{
+public:
+    Dialog_NewPlayer(int, float, float, float, float, char*);
+};

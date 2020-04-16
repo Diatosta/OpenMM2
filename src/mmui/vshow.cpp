@@ -17,3 +17,8 @@
 */
 
 #include "vshow.h"
+
+VehShowcase::VehShowcase(int a2)
+{
+    stub<member_func_t<void, VehShowcase, int>>(0x505470, this, a2);
+}

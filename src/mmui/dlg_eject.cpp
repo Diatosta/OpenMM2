@@ -17,3 +17,14 @@
 */
 
 #include "dlg_eject.h"
+
+Dialog_Eject::Dialog_Eject(int a2, float a3, float a4, float a5, float a6, char* a7)
+{
+    stub<member_func_t<void, Dialog_Eject, int, float, float, float, float, char*>>(
+        0x4F9340, this, a2, a3, a4, a5, a6, a7);
+}
+
+void Dialog_Eject::SetBootCB(datCallback a2)
+{
+    stub<member_func_t<void, Dialog_Eject, datCallback>>(0x4F99F0, this, a2);
+}
