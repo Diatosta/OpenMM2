@@ -39,9 +39,16 @@
 #include "hooking.h"
 
 #include "mmwidget/menu.h"
+#include "data/callback.h"
 
 class RaceMenu : public UIMenu
 {
 public:
+    char gap0[0xC0 - sizeof(UIMenu)];
+    datCallback* pDatCallbackC0;
+    char gapC4[0x74];
+
     RaceMenu(int);
 };
+
+check_size(RaceMenu, 0x138);

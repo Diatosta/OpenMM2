@@ -59,11 +59,16 @@
 #include "hooking.h"
 
 #include "mmwidget/menu.h"
+#include "data/callback.h"
 
 class NetArena : public UIMenu
 {
 public:
-    char gap8C[0xB8];
+    char gap0[0xEC - sizeof(UIMenu)];
+    datCallback* pDatCallbackEC;
+    char gapF0[0x8];
+    datCallback* pDatCallbackF8;
+    char gapFC[0x48];
 
     NetArena(int);
 

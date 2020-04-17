@@ -51,5 +51,11 @@
 class Dialog_Replay : public PUMenuBase
 {
 public:
+    char gap0[0x14C - sizeof(PUMenuBase)];
+    datCallback* pDatCallback14C;
+    char gap150[0x18];
+
     Dialog_Replay(int, float, float, float, float, char*);
 };
+
+check_size(Dialog_Replay, 0x168);

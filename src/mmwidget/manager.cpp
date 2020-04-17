@@ -106,7 +106,7 @@ void MenuManager::EnableNavBar()
 
     if (navBar)
     {
-        navBar->menu.Flags |= 1u;
+        navBar->Flags |= 1u;
         navBar->TurnOnPrev();
     }
 }

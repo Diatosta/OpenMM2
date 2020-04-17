@@ -124,17 +124,39 @@
 
 #include "node/node.h"
 #include "mmwidget/menu.h"
+#include "mmui/main.h"
 #include "mmui/netarena.h"
 #include "mmui/optionsbase.h"
 #include "mmui/audio.h"
 #include "mmui/ctrlcus.h"
 #include "mmui/control.h"
+#include "mmui/options.h"
+#include "mmui/graphics.h"
 #include "mmui/vehicle.h"
 #include "mmui/racebase.h"
 #include "mmui/pu_menu.h"
 #include "mmui/dlg_eject.h"
 #include "mmui/dlg_msg.h"
 #include "mmui/dlg_hoff.h"
+#include "mmui/about.h"
+#include "mmui/vehicle.h"
+#include "mmui/vshow.h"
+#include "mmui/race.h"
+#include "mmui/netselect.h"
+#include "mmui/crash.h"
+#include "mmui/ccintro.h"
+#include "mmui/racehost.h"
+#include "mmui/dlg_tcpip.h"
+#include "mmui/dlg_ctrl.h"
+#include "mmui/dlg_serial.h"
+#include "mmui/dlg_newp.h"
+#include "mmui/dlg_drec.h"
+#include "mmui/dlg_renv.h"
+#include "mmui/dlg_password.h"
+#include "mmui/dlg_host.h"
+#include "mmui/dlg_replay.h"
+#include "mmui/dlg_redit.h"
+#include "mmui/dlg_city2.h"
 #include "mmcityinfo/playercfg.h"
 #include "mmcityinfo/playerdir.h"
 #include "mmcityinfo/miscdata.h"
@@ -143,36 +165,36 @@
 class mmInterface : public asNode
 {
 public:
-    UIMenu* pMainMenu;
-    UIMenu* pRaceMenu;
+    MainMenu* pMainMenu;
+    RaceMenu* pRaceMenu;
     PUMenuBase* pDialog_City2;
     Vehicle* pVehicle;
     UIMenu* pVehShowcase;
-    UIMenu* pNetSelectMenu;
+    NetSelectMenu* pNetSelectMenu;
     UIMenu* pAboutMenu;
     UIMenu* pCrashCourse;
     UIMenu* pCrashCourseIntro;
     UIMenu* pOptionsMenu;
-    UIMenu* pGraphicsOptions;
+    GraphicsOptions* pGraphicsOptions;
     AudioOptions* pAudioOptions;
     ControlSetup* pControlSetup;
     ControlCustom* pControlCustom;
-    RaceMenuBase* pHostRaceMenu;
+    HostRaceMenu* pHostRaceMenu;
     NetArena* pNetArena;
-    char data4[0x20];
+    char gap58[0x20];
     uint8_t dword78;
     uint8_t dword7C;
     uint8_t dword80;
     PUMenuBase* pDialog_TCPIP;
     PUMenuBase* pDialog_ControlAssign;
     PUMenuBase* pDialog_Serial;
-    PUMenuBase* pDialog_NewPlayer;
-    PUMenuBase* pDialog_DriverRec;
+    Dialog_NewPlayer* pDialog_NewPlayer;
+    Dialog_DriverRec* pDialog_DriverRec;
     Dialog_HallOfFame* pDialog_HallOfFame;
     PUMenuBase* pDialog_RaceEnvironment;
     PUMenuBase* pDialog_Password;
     PUMenuBase* pDialog_Host;
-    PUMenuBase* pDialog_Replay;
+    Dialog_Replay* pDialog_Replay;
     PUMenuBase* pDialog_ReplayEdit;
     Dialog_Eject* pDialog_Eject;
     Dialog_Message* pDialog_MessageB4;
@@ -188,7 +210,7 @@ public:
     Dialog_Message* pDialog_MessageDC;
     Dialog_Message* pDialog_MessageE0;
     mmPlayerDirectory* pPlayerDirectoryE4;
-    char gapE8[0xE0];
+    char gapE8[0xD4];
     mmPlayerConfig* pPlayerConfig1BC;
     char gap1C0[0x8];
     mmPlayerConfig* pPlayerConfig1C8;
@@ -196,7 +218,9 @@ public:
     mmMiscData* pMiscData7334;
     char gap7338[0xC];
     mmMiscData* pMiscData7340;
-    char gap7344[0x1A0];
+    char gap7344[0x194];
+    mmMiscData* pMiscData74D8;
+    char gap74DC[0x8];
     mmMiscData* pMiscData74E4;
     char gap74E8[0x1A0];
     int dword7688;
@@ -222,14 +246,28 @@ public:
     void GetUnlockedCar();
     void GetUnlockedColor();
     void ShowMain(int);
+    void GetReplayDescCB(void);
     void JoinLobbyGame();
+    void NetJoinCB(void);
+    void NetNameCB(void);
+    void PlayerRemoveCB(void);
+    void PlayerCreateCB(void);
     void PlayerLoadCB(void);
+    void PlayerGraphicsCB(void);
+    void CitySetupCB(void);
+    void HOFCB(void);
+    void PlayerSwitchCityCB(void);
+    void BootPlayerCB(void*, void*);
+    void SetProtocol(void);
     void PlayerSetState();
     void InitLobby();
     int LobbyCreate();
     void SendMsg(int, int);
     void RefreshMe();
     void PlayUIMusic(void);
+    void SendChatMessage(void*);
+    void RequestProverb(void);
+    void sub_412490(void);
 };
 
 void __cdecl GetHostCars(string*);
@@ -240,3 +278,4 @@ inline extern_var(0x5E0CFA, char, GraphicsChange);
 inline extern_var(0x5E0CFB, char, GraphicsPreviousMenu);
 inline extern_var(0x627374, bool, bool_627374);
 inline extern_var(0x409010, void (*)(void), sub_409010);
+inline extern_var(0x6272D8, datCallback*, stru_6272D8);

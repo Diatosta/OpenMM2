@@ -44,10 +44,9 @@
 #include "menu.h"
 #include <mmwidget\bm_button.h>
 
-class uiNavBar
+class uiNavBar : public UIMenu
 {
 public:
-    UIMenu menu;
     char gap8C[24];
     UIBMButton* dwordA4;
     char dwordA8[4];

@@ -37,5 +37,9 @@
 class Dialog_NewPlayer : public PUMenuBase 
 {
 public:
+    char gap100[0x4];
+
     Dialog_NewPlayer(int, float, float, float, float, char*);
 };
+
+check_size(Dialog_NewPlayer, 0x104);

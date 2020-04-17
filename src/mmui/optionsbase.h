@@ -35,12 +35,13 @@
 #include "hooking.h"
 
 #include "mmwidget/menu.h"
+#include "data/callback.h"
 
 class OptionsBase : public UIMenu
 {
 public:
     char gap0[0x7210 - sizeof(UIMenu)];
-    void* dword7210;
+    datCallback* pDatCallback7210;
     char gap7214[0x4];
 };
 

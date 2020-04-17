@@ -54,7 +54,9 @@
 class HostRaceMenu : public RaceMenuBase
 {
 public:
-    char gap0[0x1B8 - sizeof(RaceMenuBase)];
+    char gap0[0x1A8 - sizeof(RaceMenuBase)];
+    datCallback* pDatCallback1A8;
+    char gap1AC[0xC];
 
     HostRaceMenu(int);
 };

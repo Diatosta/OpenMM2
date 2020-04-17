@@ -24,29 +24,6 @@
 #include "mmcityinfo/playerdir.h"
 #include "mmcityinfo/citylist.h"
 #include "mmcityinfo/vehlist.h"
-#include "mmui/netarena.h"
-#include "mmui/main.h"
-#include "mmui/about.h"
-#include "mmui/vehicle.h"
-#include "mmui/vshow.h"
-#include "mmui/race.h"
-#include "mmui/netselect.h"
-#include "mmui/crash.h"
-#include "mmui/ccintro.h"
-#include "mmui/options.h"
-#include "mmui/graphics.h"
-#include "mmui/racehost.h"
-#include "mmui/dlg_tcpip.h"
-#include "mmui/dlg_ctrl.h"
-#include "mmui/dlg_serial.h"
-#include "mmui/dlg_newp.h"
-#include "mmui/dlg_drec.h"
-#include "mmui/dlg_renv.h"
-#include "mmui/dlg_password.h"
-#include "mmui/dlg_host.h"
-#include "mmui/dlg_replay.h"
-#include "mmui/dlg_redit.h"
-#include "mmui/dlg_city2.h"
 #include "data/callback.h"
 #include "gfx/d3dpipe.h"
 #include "level/progress.h"
@@ -72,7 +49,8 @@ mmInterface::mmInterface()
     int v14;
     int v181;
     const char* v182;
-    datCallback* v185;
+    datCallback* v120;
+    asNode* v121;
 
     pPlayerDirectoryE4 = new mmPlayerDirectory();
     pPlayerConfig1C8 = new mmPlayerConfig();
@@ -157,7 +135,7 @@ mmInterface::mmInterface()
 
     lvlProgress::UpdateTask(65.0, false);
 
-    pDialog_DriverRec = new Dialog_Message(
+    pDialog_DriverRec = new Dialog_DriverRec(
         19, 0.3, 0.1, 300.0 / (float) gfxPipeline::m_iHeight, 400.0 / (float) gfxPipeline::m_iWidth, "drec_dlg");
     pDialog_HallOfFame = new Dialog_HallOfFame(
         20, 0.1, 0.1, 540.0 / (float) gfxPipeline::m_iHeight, 460.0 / (float) gfxPipeline::m_iWidth, "hoff_dlg");
@@ -254,11 +232,54 @@ mmInterface::mmInterface()
     pCrashCourse->dword78 = 40;
     pCrashCourseIntro->dword78 = 1;
 
-    //v185 = new datCallback(&mmInterface::PlayerLoadCB);
+    pMainMenu->pDatCallback90 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::PlayerLoadCB), this);
 
-    // TODO: initialize datCallbacks
+    pMainMenu->pDatCallback9C = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::PlayerRemoveCB), this);
 
-    //pDialog_Eject->SetBootCB();
+    pGraphicsOptions->pDatCallback7210 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::PlayerGraphicsCB), this);
+
+    pDialog_NewPlayer->pDatCallbackF8 =
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::PlayerCreateCB), this);
+
+    pDialog_HallOfFame->pDatCallbackCC = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::HOFCB), this);
+
+    pDialog_DriverRec->pDatCallbackE4 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::PlayerSwitchCityCB), this);
+
+    pNetSelectMenu->pDatCallbackDC = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::SetProtocol), this);
+
+    pNetSelectMenu->pDatCallbackE8 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::NetJoinCB), this);
+
+    pNetSelectMenu->pDatCallbackF4 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::NetNameCB), this);
+
+    pNetArena->pDatCallbackEC = 
+        new datCallback(static_cast<void (Base::*)(void*)>(&mmInterface::SendChatMessage), this, nullptr);
+
+    pNetArena->pDatCallbackF8 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::RequestProverb), this);
+
+    pHostRaceMenu->pDatCallback1A8 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::RequestProverb), this);
+
+    pRaceMenu->pDatCallbackC0 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::CitySetupCB), this);
+
+    pHostRaceMenu->pDatCallbackC0 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::CitySetupCB), this);
+
+    pDialog_Replay->pDatCallback14C = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::GetReplayDescCB), this);
+
+    datCallback* setBootCallback = new datCallback(static_cast<void (Base::*)(void*, void*)>(&mmInterface::BootPlayerCB), this, nullptr);
+
+    pDialog_Eject->SetBootCB(*setBootCallback);
 
     dword76AC = 0;
 
@@ -323,9 +344,8 @@ mmInterface::mmInterface()
 
     gfxLostCallback = sub_409010;
 
-    // TODO: a missing callbac
-
-
+    stru_6272D8 = 
+        new datCallback(static_cast<void (Base::*)()>(&mmInterface::sub_412490), this);
 
     lvlProgress::EndTask();
 
@@ -511,9 +531,63 @@ void mmInterface::ShowMain(int firstLoad)
     }
 }
 
+void mmInterface::GetReplayDescCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40A4D0, this);
+}
+
+void mmInterface::NetJoinCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40C0E0, this);
+}
+void mmInterface::NetNameCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40C140, this);
+}
+
+void mmInterface::PlayerRemoveCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40DAE0, this);
+}
+
+void mmInterface::PlayerCreateCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40DD00, this);
+}
+
 void mmInterface::PlayerLoadCB()
 {
     stub<member_func_t<void, mmInterface>>(0x40DF30, this);
+}
+
+void mmInterface::PlayerGraphicsCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40DF60, this);
+}
+
+void mmInterface::CitySetupCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40E380, this);
+}
+
+void mmInterface::HOFCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40E8F0, this);
+}
+
+void mmInterface::PlayerSwitchCityCB()
+{
+    stub<member_func_t<void, mmInterface>>(0x40E120, this);
+}
+
+void mmInterface::BootPlayerCB(void* a2, void* a3)
+{
+    stub<member_func_t<void, mmInterface, void*, void*>>(0x411EF0, this, a2, a3);
+}
+
+void mmInterface::SetProtocol()
+{
+    stub<member_func_t<void, mmInterface>>(0x4109D0, this);
 }
 
 void mmInterface::JoinLobbyGame()
@@ -550,4 +624,19 @@ void mmInterface::RefreshMe()
 void mmInterface::PlayUIMusic()
 {
     stub<member_func_t<void, mmInterface>>(0x412280, this);
+}
+
+void mmInterface::SendChatMessage(void* a2)
+{
+    stub<member_func_t<void, mmInterface, void*>>(0x411D80, this, a2);
+}
+
+void mmInterface::RequestProverb()
+{
+    stub<member_func_t<void, mmInterface>>(0x40D840, this);
+}
+
+void mmInterface::sub_412490()
+{
+    stub<member_func_t<void, mmInterface>>(0x412490, this);
 }

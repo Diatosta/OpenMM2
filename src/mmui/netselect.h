@@ -65,9 +65,20 @@
 #include "hooking.h"
 
 #include "mmwidget/menu.h"
+#include "data/callback.h"
 
 class NetSelectMenu : public UIMenu
 {
 public:
+    char gap0[0xDC - sizeof(UIMenu)];
+    datCallback* pDatCallbackDC;
+    char gapE0[0x8];
+    datCallback* pDatCallbackE8;
+    char gapEC[0x8];
+    datCallback* pDatCallbackF4;
+    char gapF8[0x170];
+
     NetSelectMenu(int);
 };
+
+check_size(NetSelectMenu, 0x268);

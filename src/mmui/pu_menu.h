@@ -40,9 +40,18 @@
 #include "hooking.h"
 
 #include "mmwidget/menu.h"
+#include "data/callback.h"
 
 class PUMenuBase : UIMenu
 {
-    char gap0[0x78];
-    int dword78;
+public:
+    char gap0[0xCC - sizeof(UIMenu)];
+    datCallback* pDatCallbackCC;
+    char gapD0[0x14];
+    datCallback* pDatCallbackE4;
+    char gapE8[0x10];
+    datCallback* pDatCallbackF8;
+    char gapFC[0x4];
 };
+
+check_size(PUMenuBase, 0x100);
