@@ -17,3 +17,58 @@
 */
 
 #include "playerdata.h"
+
+int mmPlayerData::OpenCityRecord(char* a2)
+{
+    return stub<member_func_t<int, mmPlayerData, char*>>(0x5271B0, this, a2);
+}
+
+int mmPlayerData::CloseCityRecord()
+{
+    return stub<member_func_t<int, mmPlayerData>>(0x527220, this);
+}
+
+void mmPlayerData::SetTagID(float a2)
+{
+    stub<member_func_t<void, mmPlayerData, float>>(0x527260, this, a2);
+}
+
+void mmPlayerData::Reset()
+{
+    stub<member_func_t<void, mmPlayerData>>(0x527BB0, this);
+}
+
+void mmPlayerData::SetCity(char* a2)
+{
+    stub<member_func_t<void, mmPlayerData, char*>>(0x527C30, this, a2);
+}
+
+void mmPlayerData::SetName(char* a2)
+{
+    stub<member_func_t<void, mmPlayerData, char*>>(0x527C80, this, a2);
+}
+
+char* mmPlayerData::GetName()
+{
+    return stub<member_func_t<char*, mmPlayerData>>(0x527CC0, this);
+}
+
+void mmPlayerData::SetNetName(char* a2)
+{
+    stub<member_func_t<void, mmPlayerData, char*>>(0x527CD0, this, a2);
+}
+
+void mmPlayerData::SetFileName(char* a2)
+{
+    stub<member_func_t<void, mmPlayerData, char*>>(0x527D20, this, a2);
+}
+
+char* mmPlayerData::GetFileName()
+{
+    return stub<member_func_t<char*, mmPlayerData>>(0x527D60, this);
+}
+
+int mmPlayerData::Save(char* a2, int a3)
+{
+    return stub<member_func_t<int, mmPlayerData, char*, int>>(0x527DA0, this, a2, a3);
+}

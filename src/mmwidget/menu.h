@@ -93,6 +93,8 @@
 
 #include "node/node.h"
 #include "vector/vector2.h"
+#include "mmwidget/bm_button.h"
+#include "data/callback.h"
 
 class UIMenu : public asNode
 {
@@ -113,7 +115,7 @@ public:
     Vector2 Scale;
     unsigned int dword58;
     float scaleX;
-    float scaleYs;
+    float scaleY;
     unsigned int dword64;
     unsigned int* pCurrentWidgetID;
     unsigned int ActiveWidgetID;
@@ -125,10 +127,13 @@ public:
     unsigned int dword84;
     const char* Background;
 
+    void AssignName(struct LocString*);
     void AssignBackground(char*);
     void Enable();
     void SetBstate(int);
     void GetDimensions(float*, float*, float*, float*);
+    UIBMButton* AddBMButton(
+        int, char*, float, float, int, class datCallback, int*, int, int, class datCallback);
 };
 
 check_size(UIMenu, 0x8C);

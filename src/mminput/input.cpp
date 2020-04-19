@@ -33,6 +33,11 @@ int mmInput::AttachToPipe(void)
     return stub<member_func_t<int, mmInput>>(0x52ACB0, this);
 }
 
+void mmInput::AutoSetup()
+{
+    stub<member_func_t<void, mmInput>>(0x52B1E0, this);
+}
+
 void mmInput::Init(int inputDevice)
 {
     stub<member_func_t<void, mmInput, int>>(0x52C380, this, inputDevice);

@@ -18,6 +18,9 @@
 
 #include "interface.h"
 
+#include <direct.h>
+
+#include "data/memory.h"
 #include "mmwidget/manager.h"
 #include "mmnetwork/network.h"
 #include "mmcityinfo/state.h"
@@ -29,6 +32,7 @@
 #include "level/progress.h"
 #include "localize/localize.h"
 #include "node/root.h"
+#include "testgame.cpp"
 
 void __cdecl GetHostCars(string* a1)
 {
@@ -41,7 +45,7 @@ mmInterface::mmInterface()
     LocString* v4;
     mmVehList* v6;
     mmCityList* v8;
-    char* v9;
+    char v9[128] {0};
     unsigned int v10;
     char v11;
     char* v12;
@@ -52,7 +56,7 @@ mmInterface::mmInterface()
     datCallback* v120;
     asNode* v121;
 
-    pPlayerDirectoryE4 = new mmPlayerDirectory();
+    pPlayerDirectory = new mmPlayerDirectory();
     pPlayerConfig1C8 = new mmPlayerConfig();
     pMiscData7340 = new mmMiscData();
     pMiscData74E4 = new mmMiscData();
@@ -67,18 +71,20 @@ mmInterface::mmInterface()
 
     v4 = AngelReadString(0x40u);
 
+    sprintf(byte_627314, "%s", v4);
+
     v6 = new mmVehList();
     v6->LoadAll();
 
     v8 = new mmCityList();
     v8->LoadAll();
-    v9 = (char*)v8->GetCurrentCity();
-    v9 += 84;
+    memcpy(&v9, &v8->GetCurrentCity()->pChar54, sizeof(v9));
 
     v10 = strlen(v9) + 1;
     v11 = v10;
     v10 >>= 2;
-    memcpy(MMSTATE.CityLocale, v9, 4 * v10);
+
+    memcpy(&MMSTATE.CityLocale, v9, 4 * v10);
 
     v13 = &v9[4 * v10];
     v12 = &MMSTATE.CityLocale[4 * v10];
@@ -100,9 +106,12 @@ mmInterface::mmInterface()
 
     pVehShowcase = new VehShowcase(9);
     pRaceMenu = new RaceMenu(7);
-    pNetSelectMenu = new NetSelectMenu(10);
+    pNetSelectMenu = new NetSelectMenu(10u);
     pCrashCourse = new class CrashCourse(39);
     pCrashCourseIntro = new CrashCourseIntro(40);
+
+    lvlProgress::UpdateTask(40.0, false);
+
     pOptionsMenu = new OptionsMenu(2);
     pGraphicsOptions = new GraphicsOptions(4);
     pAudioOptions = new AudioOptions(3);
@@ -280,10 +289,9 @@ mmInterface::mmInterface()
     datCallback* setBootCallback = new datCallback(static_cast<void (Base::*)(void*, void*)>(&mmInterface::BootPlayerCB), this, nullptr);
 
     pDialog_Eject->SetBootCB(*setBootCallback);
-
     dword76AC = 0;
 
-    //InitPlayerInfo();
+    InitPlayerInfo();
 
     lvlProgress::UpdateTask(97.0, false);
 
@@ -357,6 +365,152 @@ mmInterface::mmInterface()
 void mmInterface::InitPlayerInfo()
 {
     stub<member_func_t<void, mmInterface>>(0x409030, this);
+
+    LocString* v2;
+    mmCityInfo* v4;
+    char* v5;
+    char* v7;
+    char* v11;
+    char* v12;
+    mmCityInfo* v13;
+    mmCityInfo* v14;
+    char v15;
+    char v16;
+
+    Displayf("Entered InitPlayerInfo()");
+
+    char* a1 = new char[strlen(ExecPath) + 10]();
+    sprintf(a1, "%s/players", ExecPath);
+
+    MMCURRPLAYER.SetIOPath(a1);
+    pPlayerDirectory->SetIOPath(a1);
+    pPlayerConfig1C8->SetIOPath(a1);
+
+    if (!pPlayerDirectory->Load("players"))
+    {
+        sprintf(&v15, "%s\\players", ExecPath);
+        _mkdir(&v15);
+        GameInputPtr->AutoSetup();
+        strcpy(MMSTATE.VehicleName, VehicleList->GetVehicleInfo(0)->pChar4);
+        pVehicle->AllSetCar(MMSTATE.VehicleName, 0);
+        pGraphicsOptions->AfterLoad();
+        gfxSaveSettings();
+        PlayerReadState();
+        MMCURRPLAYER.Reset();
+        v2 = AngelReadString(65u);
+        MMCURRPLAYER.SetName(v2->Buffer);
+        v2 = AngelReadString(66u);
+        MMCURRPLAYER.SetNetName(v2->Buffer);
+        MMCURRPLAYER.SetTagID(*((long*)&(ElapsedTime)) >> 1);
+        v4 = CityList->GetCurrentCity();
+        MMCURRPLAYER.SetCity(v4->pChar54);
+        pPlayerConfig1C8->DefaultViewSettings();
+        bool7331 = true;
+        v5 = MMCURRPLAYER.GetName();
+        pPlayerDirectory->AddPlayer(v5);
+        v5 = MMCURRPLAYER.GetName();
+        v7 = pPlayerDirectory->GetFileName(v5);
+        MMCURRPLAYER.SetFileName(v7);
+        v5 = MMCURRPLAYER.GetFileName();
+        pPlayerConfig1C8->Save(v5, 1);
+        v5 = MMCURRPLAYER.GetFileName();
+        MMCURRPLAYER.Save(v5, 1);
+        v5 = MMCURRPLAYER.GetName();
+        pPlayerDirectory->SetLastPlayer(v5);
+        byte_6B1B84 = true;
+        pPlayerDirectory->Save("players", 1);
+    }
+
+    sprintf(&v16, "%s\\players\\london", ExecPath);
+    pMiscData7340->SetIOPath(&v16);
+    pMiscData74E4->SetIOPath(&v16);
+    _mkdir(&v16);
+
+    if (!pMiscData7340->Open("amateur"))
+    {
+        HOFInitRecords(0, "london");
+    }
+
+    if (!pMiscData74E4->Open("pro"))
+    {
+        HOFInitRecords(1, "london");
+    }
+
+    pMiscData7340->Close();
+    pMiscData74E4->Close();
+    sprintf(&v16, "%s\\players\\sf", ExecPath);
+    pMiscData7340->SetIOPath(&v16);
+    pMiscData74E4->SetIOPath(&v16);
+    _mkdir(&v16);
+
+    if (!pMiscData7340->Open("amateur"))
+    {
+        HOFInitRecords(0, "sf");
+    }
+
+    if (!pMiscData74E4->Open("pro"))
+    {
+        HOFInitRecords(1, "sf");
+    }
+
+    pMiscData7340->Close();
+    pMiscData74E4->Close();
+
+    if (pPlayerDirectory->GetNumPlayers())
+    {
+        if (byte_6B1B84)
+        {
+            v12 = MMCURRPLAYER.GetFileName();
+            pPlayerConfig1C8->Load(v12);
+            v13 = CityList->GetCityInfo("sf");
+
+            if (!v13 || MMCURRPLAYER.OpenCityRecord(v13->pChar54))
+            {
+                MMCURRPLAYER.CloseCityRecord();
+            }
+            else
+            {
+                PlayerInitStats("sf");
+            }
+
+            v14 = CityList->GetCityInfo("london");
+
+            if (!v14 || MMCURRPLAYER.OpenCityRecord(v14->pChar54))
+            {
+                MMCURRPLAYER.CloseCityRecord();
+            }
+            else
+            {
+                PlayerInitStats("london");
+            }
+
+            PlayerSetState();
+        }
+        else
+        {
+            v11 = pPlayerDirectory->GetLastPlayer();
+            PlayerLoad(v11);
+        }
+
+        RefreshDriverList();
+    }
+
+    if (!pPlayerDirectory->GetNumPlayers())
+    {
+        strcpy(MMSTATE.VehicleName, VehicleList->GetVehicleInfo(0)->pChar4);
+        strncpy(byte_6B1B28, MMSTATE.VehicleName, 80u);
+        byte_6B1B84 = false;
+    }
+
+    pNetSelectMenu->SetComs();
+    LocString* string = AngelReadString(67u);
+    strcpy(pChar76C0, string->Buffer);
+
+    operator delete(a1);
+
+    Displayf("Exited InitPlayerInfo()");
+
+    return;
 }
 
 mmInterface::~mmInterface()
@@ -565,14 +719,34 @@ void mmInterface::PlayerGraphicsCB()
     stub<member_func_t<void, mmInterface>>(0x40DF60, this);
 }
 
+void mmInterface::PlayerLoad(char* a2)
+{
+    stub<member_func_t<void, mmInterface, char*>>(0x40DFE0, this, a2);
+}
+
+void mmInterface::PlayerReadState()
+{
+    stub<member_func_t<void, mmInterface>>(0x40FE80, this);
+}
+
 void mmInterface::CitySetupCB()
 {
     stub<member_func_t<void, mmInterface>>(0x40E380, this);
 }
 
+void mmInterface::HOFInitRecords(int a2, char* a3)
+{
+    stub<member_func_t<void, mmInterface, int, char*>>(0x40E820, this, a2, a3);
+}
+
 void mmInterface::HOFCB()
 {
     stub<member_func_t<void, mmInterface>>(0x40E8F0, this);
+}
+
+void mmInterface::PlayerInitStats(char* a2)
+{
+    stub<member_func_t<void, mmInterface, char*>>(0x40F3B0, this, a2);
 }
 
 void mmInterface::PlayerSwitchCityCB()
@@ -599,6 +773,11 @@ void mmInterface::JoinLobbyGame()
 void mmInterface::PlayerSetState()
 {
     stub<member_func_t<void, mmInterface>>(0x40E150, this);
+}
+
+void mmInterface::RefreshDriverList()
+{
+    stub<member_func_t<void, mmInterface>>(0x40FEA0, this);
 }
 
 void mmInterface::InitLobby()

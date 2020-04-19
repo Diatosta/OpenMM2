@@ -34,5 +34,5 @@
 class mmInfoBase
 {
 public:
-
+    void SetIOPath(char*);
 };

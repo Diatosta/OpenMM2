@@ -17,8 +17,14 @@
 */
 
 #include "vehicle.h"
+#include <core\output.h>
 
 Vehicle::Vehicle(int a2)
+    : VehicleSelectBase(a2)
 {
-    stub<member_func_t<void, Vehicle, int>>(0x5056D0, this, a2);
+    AssignName((LocString*)"Garage Menu");
+    LoadStats("vehiclestats");
+    InitCarSelection(1, 0.025, 0.3, 0.5, 0.5);
+    AddBMButton(9999, "veh_go", scaleX, scaleY, 4, NullCallback, 0, -1, 10, NullCallback);
+    SetBstate(0);
 }

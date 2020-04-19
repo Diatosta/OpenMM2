@@ -50,7 +50,7 @@
 
 #include "mmcityinfo/infobase.h"
 
-class mmPlayerDirectory
+class mmPlayerDirectory : public mmInfoBase
 {
 public:
     char data1[0x84];
@@ -60,6 +60,14 @@ public:
     void* pVoid90 {nullptr};
 
     mmPlayerDirectory() = default;
+
+    void SetLastPlayer(char*);
+    int GetNumPlayers(void);
+    char* GetLastPlayer(void);
+    int AddPlayer(char*);
+    char* GetFileName(char*);
+    int Load(char*);
+    int Save(char*, int);
 };
 
 check_size(mmPlayerDirectory, 0x94);

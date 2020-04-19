@@ -56,3 +56,5 @@ public:
 
     static void Update(void);
 };
+
+inline extern_var(0x6A3C40, float, ElapsedTime);

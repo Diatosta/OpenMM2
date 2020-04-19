@@ -17,3 +17,38 @@
 */
 
 #include "playerdir.h"
+
+void mmPlayerDirectory::SetLastPlayer(char* a2)
+{
+    stub<member_func_t<void, mmPlayerDirectory, char*>>(0x526640, this, a2);
+}
+
+int mmPlayerDirectory::GetNumPlayers()
+{
+    return stub<member_func_t<int, mmPlayerDirectory>>(0x5266C0, this);
+}
+
+char* mmPlayerDirectory::GetLastPlayer()
+{
+    return stub<member_func_t<char*, mmPlayerDirectory>>(0x5266D0, this);
+}
+
+int mmPlayerDirectory::AddPlayer(char* a2)
+{
+    return stub<member_func_t<int, mmPlayerDirectory, char*>>(0x526700, this, a2);
+}
+
+char* mmPlayerDirectory::GetFileName(char* a2)
+{
+    return stub<member_func_t<char*, mmPlayerDirectory, char*>>(0x5269A0, this, a2);
+}
+
+int mmPlayerDirectory::Load(char* a2)
+{
+    return stub<member_func_t<int, mmPlayerDirectory, char*>>(0x526CA0, this, a2);
+}
+
+int mmPlayerDirectory::Save(char* a2, int a3)
+{
+    return stub<member_func_t<int, mmPlayerDirectory, char*, int>>(0x526CA0, this, a2, a3);
+}

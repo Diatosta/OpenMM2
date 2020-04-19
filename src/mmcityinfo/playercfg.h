@@ -78,6 +78,10 @@ public:
     char gap7168[0x8];
 
     mmPlayerConfig();
+
+    int Load(char*);
+    int Save(char*, int);
+    void DefaultViewSettings(void);
 };
 
 check_size(mmPlayerConfig, 0x7170);

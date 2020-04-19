@@ -124,6 +124,7 @@ public:
     ~mmInput();
 
     int AttachToPipe(void);
+    void AutoSetup(void);
     void Init(int inputDevice);
 
     virtual void Update() override;

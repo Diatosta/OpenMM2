@@ -33,5 +33,17 @@
 
 class mmCityInfo
 {
+public:
+    char gap0[0x54];
+    char* pChar54;
+    char gap58[0x24];
+    int dword7C;
+    int dword80;
+    int dword84;
+    int dword88;
+    int dword8C;
+    int dword90;
+    int dword94;
 
+    mmCityInfo(void);
 };

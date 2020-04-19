@@ -22,3 +22,18 @@ mmPlayerConfig::mmPlayerConfig()
 {
     stub<member_func_t<void, mmPlayerConfig>>(0x5254B0, this);
 }
+
+int mmPlayerConfig::Load(char* a2)
+{
+    return stub<member_func_t<int, mmPlayerConfig, char*>>(0x525750, this, a2);
+}
+
+int mmPlayerConfig::Save(char* a2, int a3)
+{
+    return stub<member_func_t<int, mmPlayerConfig, char*, int>>(0x525C80, this, a2, a3);
+}
+
+void mmPlayerConfig::DefaultViewSettings()
+{
+    stub<member_func_t<void, mmPlayerConfig>>(0x526350, this);
+}

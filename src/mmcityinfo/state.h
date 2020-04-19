@@ -43,6 +43,7 @@
 #include "hooking.h"
 
 #include "city/state.h"
+#include "mmcityinfo/playerdata.h"
 
 class NetStartArray
 {
@@ -203,3 +204,4 @@ extern const char* dgGameModeNames[7];
 check_size(mmStatePack, 0x3E0);
 
 inline extern_var(0x6B1610, mmStatePack, MMSTATE);
+inline extern_var(0x6B19F8, mmPlayerData, MMCURRPLAYER);

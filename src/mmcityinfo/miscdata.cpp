@@ -22,3 +22,13 @@ mmMiscData::mmMiscData()
 {
     stub<member_func_t<void, mmMiscData>>(0x524A30, this);
 }
+
+int mmMiscData::Open(char* a2)
+{
+    return stub<member_func_t<int, mmMiscData, char*>>(0x524B20, this, a2);
+}
+
+int mmMiscData::Close()
+{
+    return stub<member_func_t<int, mmMiscData>>(0x524C90, this);
+}

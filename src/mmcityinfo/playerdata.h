@@ -54,4 +54,22 @@
     0x528220 | public: virtual __thiscall mmPlayerCityRecord::~mmPlayerCityRecord(void) | ??1mmPlayerCityRecord@@UAE@XZ
 */
 
-// #include "hooking.h"
+#include "hooking.h"
+
+#include "infobase.h"
+
+class mmPlayerData : public mmInfoBase
+{
+public:
+    int OpenCityRecord(char*);
+    int CloseCityRecord(void);
+    void SetTagID(float);
+    void Reset(void);
+    void SetCity(char*);
+    void SetName(char*);
+    char* GetName(void);
+    void SetNetName(char*);
+    void SetFileName(char*);
+    char* GetFileName(void);
+    int Save(char*, int);
+};

@@ -310,6 +310,11 @@ void gfxPipeline::Manage()
     sdlPipeline::Manage();
 }
 
+void gfxSaveSettings()
+{
+    return stub<cdecl_t<void>>(0x4ABD00);
+}
+
 void gfxFindSafeAdapter()
 {
     return stub<cdecl_t<void>>(0x4AC820);

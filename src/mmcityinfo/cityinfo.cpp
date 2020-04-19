@@ -17,3 +17,11 @@
 */
 
 #include "cityinfo.h"
+
+mmCityInfo::mmCityInfo()
+{
+    dword88 = 0;
+    dword84 = 0;
+    dword80 = 0;
+    dword7C = 0;
+}

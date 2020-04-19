@@ -55,6 +55,7 @@ public:
     mmCityList();
     virtual ~mmCityList();
 
+    mmCityInfo* GetCityInfo(char*);
     void SetCurrentCity(char*);
     mmCityInfo* GetCurrentCity(void);
     void Load(char*);
@@ -63,3 +64,5 @@ public:
 
 static inline extern_var(0x5244C0, void (*)(const char*, bool, void*), loadCityCB);
 inline extern_var(0x6B1CA0, mmCityList*, CityList);
+
+check_size(mmCityList, 0x10);

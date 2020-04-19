@@ -79,6 +79,8 @@ public:
     char gapF8[0x170];
 
     NetSelectMenu(int);
+
+    void SetComs(void);
 };
 
 check_size(NetSelectMenu, 0x268);

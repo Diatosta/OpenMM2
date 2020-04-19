@@ -39,6 +39,8 @@
 class mmVehInfo
 {
 public:
-    
+    char gap0[0x4];
+    char* pChar4;
+    char gap8[0x114];
 };
 

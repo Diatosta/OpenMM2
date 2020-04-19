@@ -17,3 +17,8 @@
 */
 
 #include "infobase.h"
+
+void mmInfoBase::SetIOPath(char* a2)
+{
+    stub<member_func_t<void, mmInfoBase, char*>>(0x5283C0, this, a2);
+}

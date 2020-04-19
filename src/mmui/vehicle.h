@@ -35,9 +35,15 @@
 #include "hooking.h"
 
 #include "vselect.h"
+#include "mmwidget/menu.h"
 
 class Vehicle : public VehicleSelectBase
 {
 public:
+    char gap0[0x174 - sizeof(VehicleSelectBase)];
+    UIBMButton* pUIBMButton;
+
     Vehicle(int);
 };
+
+check_size(Vehicle, 0x178);

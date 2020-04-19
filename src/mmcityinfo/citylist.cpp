@@ -30,6 +30,11 @@ mmCityList::~mmCityList()
     stub<member_func_t<void, mmCityList>>(0x524180, this);
 }
 
+mmCityInfo* mmCityList::GetCityInfo(char* a2)
+{
+    return stub<member_func_t<mmCityInfo*, mmCityList, char*>>(0x524220, this, a2);
+}
+
 void mmCityList::SetCurrentCity(char* a2)
 {
     stub<member_func_t<void, mmCityList, char*>>(0x5242C0, this, a2);

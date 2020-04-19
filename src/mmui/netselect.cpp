@@ -22,3 +22,8 @@ NetSelectMenu::NetSelectMenu(int a2)
 {
     stub<member_func_t<void, NetSelectMenu, int>>(0x504130, this, a2);
 }
+
+void NetSelectMenu::SetComs()
+{
+    stub<member_func_t<void, NetSelectMenu>>(0x504CE0, this);
+}

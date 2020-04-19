@@ -167,6 +167,8 @@ public:
     static inline extern_var(0x683114, uint32_t, m_EvtFlags);
 };
 
+void gfxSaveSettings(void);
+
 enum gfxDeviceType
 {
     gfxDeviceType_Software = 0,       // Software (No 3D Video Card)

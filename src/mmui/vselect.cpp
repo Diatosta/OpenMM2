@@ -18,7 +18,22 @@
 
 #include "vselect.h"
 
+VehicleSelectBase::VehicleSelectBase(int a2)
+{
+    stub<member_func_t<void, VehicleSelectBase, int>>(0x4F5470, this, a2);
+}
+
+void VehicleSelectBase::InitCarSelection(int a2, float a3, float a4, float a5, float a6)
+{
+    stub<member_func_t<void, VehicleSelectBase, int, float, float, float, float>>(0x4F57C0, this, a2, a3, a4, a5, a6);
+}
+
 void VehicleSelectBase::AllSetCar(char* a2, int a3)
 {
     stub<member_func_t<void, VehicleSelectBase, char*, int>>(0x4F6AF0, this, a2, a3);
+}
+
+int VehicleSelectBase::LoadStats(char* a2)
+{
+    return stub<member_func_t<int, VehicleSelectBase, char*>>(0x4F7340, this, a2);
 }

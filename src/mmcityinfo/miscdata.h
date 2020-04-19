@@ -48,6 +48,9 @@ public:
     char gap0[0x9C];
 
     mmMiscData();
+
+    int Open(char*);
+    int Close(void);
 };
 
 check_size(mmMiscData, 0x9C);

@@ -72,5 +72,9 @@
 class VehicleSelectBase : public UIMenu
 {
 public:
+    VehicleSelectBase(int);
+
+    void InitCarSelection(int, float, float, float, float);
     void AllSetCar(char*, int);
+    int LoadStats(char*);
 };
